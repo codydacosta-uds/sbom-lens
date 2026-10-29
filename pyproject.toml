@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sbom-lens"
+version = "0.1.0"
+description = "A terminal SBOM browser with exact component search and optional Dependency-Track integration"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["textual>=1,<7", "requests>=2.32,<3"]
+
+[project.scripts]
+sbom-lens = "sbom_lens.app:main"
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sbom_lens"]
